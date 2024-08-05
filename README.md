@@ -35,76 +35,7 @@ mvn clean install
 Run the Application
 mvn spring-boot:run
 
-
 The application will start on port 8080 by default.
-
-API Endpoints
-Create an Event
-URL: /events
-Method: POST
-Request Body:
-{
-    "eventName": "Sample Event",
-    "eventDate": "2024-08-04",
-    "eventTime": "14:00",
-    "eventLocation": "Sample Location",
-    "availableTickets": 100
-}
-
-{
-    "id": 1,
-    "eventName": "Sample Event",
-    "eventDate": "2024-08-04",
-    "eventTime": "14:00",
-    "eventLocation": "Sample Location",
-    "availableTickets": 100
-}
-Get Event by ID
-URL: /events/{id}
-Method: GET
-Response:
-
-{
-    "id": 1,
-    "eventName": "Sample Event",
-    "eventDate": "2024-08-04",
-    "eventTime": "14:00",
-    "eventLocation": "Sample Location",
-    "availableTickets": 100
-}
-
-Update an Event
-URL: /events/{id}
-Method: PUT
-Request Body:
-{
-    "eventName": "Updated Event",
-    "eventDate": "2024-08-05",
-    "eventTime": "16:00",
-    "eventLocation": "Updated Location",
-    "availableTickets": 150
-}
-
-{
-    "id": 1,
-    "eventName": "Updated Event",
-    "eventDate": "2024-08-05",
-    "eventTime": "16:00",
-    "eventLocation": "Updated Location",
-    "availableTickets": 150
-}
-Delete an Event
-URL: /events/{id}
-Method: DELETE
-Response: 204 No Content
-Check Availability
-URL: /events/{id}/availability
-Method: GET
-Response:
-{
-    "availableTickets": 100
-}
-
 
 Testing
 To run unit tests, use:
