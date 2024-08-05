@@ -24,13 +24,16 @@ public class EventDto {
 
     @JsonProperty("event_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-    private LocalDate eventdate;
+    private LocalDate eventDate;
 
     @Column(name = "event_time")
     private LocalTime eventTime;
 
     @JsonProperty("event_location")
     private String eventLocation;
+
+    @JsonProperty("available_tickets")
+    private Integer availableTickets;
 
 
 }

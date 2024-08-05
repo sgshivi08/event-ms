@@ -4,11 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.id.IncrementGenerator;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -32,6 +30,9 @@ public class Event {
 
     @Column(name = "event_location")
     private String eventLocation;
+
+    @Column(name = "available_tickets")
+    private Integer availableTickets;
 
 
 

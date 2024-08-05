@@ -1,7 +1,7 @@
 package com.example.event.service.Impl;
 
 import com.example.event.entity.Event;
-import com.example.event.repo.Eventrepository;
+import com.example.event.repo.EventRepository;
 import com.example.event.requestdto.EventDto;
 import com.example.event.service.EventService;
 import org.modelmapper.ModelMapper;
@@ -10,19 +10,21 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventServiceImpl implements EventService {
 
     @Autowired
-    private Eventrepository eventrepository;
+    private EventRepository eventrepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public EventDto getEventDetailsById(int id) {
-        return modelMapper.map(eventrepository.findById(id), EventDto.class);
+        Optional<Event> event = eventrepository.findById(id);
+        return event.map(value -> modelMapper.map(value, EventDto.class)).orElse(null);
     }
 
     @Override
@@ -70,15 +72,18 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventDto> searchEvents(EventDto eventDto) {
-        List<Event> eventList =  eventrepository.searchEvents(eventDto.getEventName(),eventDto.getEventdate(),eventDto.getEventTime(), eventDto.getEventLocation());
+        List<Event> eventList =  eventrepository.searchEvents(eventDto.getEventName(),eventDto.getEventDate(),eventDto.getEventTime(), eventDto.getEventLocation());
          return eventList.stream().map(e -> {
             return modelMapper.map(e, EventDto.class);
         }).toList();
     }
 
     @Override
-    public void manageEvent(EventDto eventDto) {
-        eventrepository.save(modelMapper.map(eventDto, Event.class));
+    public void manageEvent(Integer id, EventDto eventDto) {
+      Optional<Event> event =  eventrepository.findById(id);
+      if(event.isPresent()) {
+          eventrepository.save(modelMapper.map(eventDto, Event.class));
+      }
     }
 
     @Override

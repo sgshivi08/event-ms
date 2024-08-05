@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
-public interface Eventrepository extends JpaRepository<Event, Integer> {
+public interface EventRepository extends JpaRepository<Event, Integer> {
 
     // Find event by ID (already provided by JpaRepository with findById method)
 
