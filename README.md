@@ -25,8 +25,7 @@ The Event Microservice is part of a larger event management system that allows u
 
 ### Clone the Repository
 
-```bash
-git clone https://github.com/your-repo/event-microservice.git
+git clone https://github.com/sgshivi08/event-ms.git
 cd event-microservice
 
 Build the Project
