@@ -2,10 +2,12 @@ package com.example.event.controller;
 
 import com.example.event.requestdto.EventDto;
 import com.example.event.service.EventService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,14 +34,9 @@ public class EventController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> createEvent(@RequestBody EventDto event) {
-        try {
+    public ResponseEntity<String> createEvent(@RequestBody EventDto event) throws Exception {
             eventService.createEvent(event);
             return ResponseEntity.ok("Event created successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error creating event: " + e.getMessage());
-        }
 
     }
 
